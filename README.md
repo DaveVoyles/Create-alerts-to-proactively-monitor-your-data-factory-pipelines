@@ -15,7 +15,7 @@ ADF's monitoring solution is built on [Azure Monitor.](https://docs.microsoft.co
 
 It helps you understand how your applications are performing and proactively identifies issues affecting them and the resources they depend on.
 
-### Configuring alerts
+### Configuring alerts within Data Factory
 
 ![image info](./img/1-criteria.png)
 
@@ -23,12 +23,21 @@ In ADF you can configure the alert logic. You can specify various filters such a
 
 ![image info](./img/2-alert_logic.png)
 
-### Notifications
+#### Notifications from Data Factory 
 Upon fulfillment of your parameters (Pass or Fail), an alert will be sent out. It takes ~2 minutes to reach my inbox. 
 
 Different mechanisms such email, SMS, voice, and push notifications are supported.
 
 ![image info](./img/3-alert_email.png)
+
+#### Manage rules/alerts from within the Azure Portal
+You can also manage and view these rules from within the Azure portal.
+
+![see alerts](./img/11-see_alert_rules.png)
+
+You can find this by click on the Monitoring -> Alerts pane:
+
+![monitoring alerts](./img/12-monitoring-alerts.png)
 
 ### Keeping Azure Data Factory data
 Data Factory stores pipeline-run data for only 45 days. Use Monitor if you want to keep that data for a longer time. With Monitor, you can route diagnostic logs for analysis. You can also keep them in a storage account so that you have factory information for your chosen duration.
