@@ -50,18 +50,37 @@ All data collected by Azure Monitor fits into one of two fundamental types, metr
 
  Logs contain different kinds of data organized into records with different sets of properties for each type. Telemetry such as events and traces are stored as logs in addition to performance data so that it can all be combined for analysis.
 
- #### Monitor Data Factory metrics with Azure Monitor
-[This video from Scott Hanselman](https://docs.microsoft.com/en-us/azure/data-factory/monitor-using-azure-monitor#monitor-data-factory-metrics-with-azure-monitor) has step-by-step instructions on how to configure Azure Data Factory Analytics with Azure Monitor.
+ #### Azure Data Factory Management Solution Service Pack
+[This video from Scott Hanselman](https://docs.microsoft.com/en-us/azure/data-factory/monitor-using-azure-monitor#monitor-data-factory-metrics-with-azure-monitor) has step-by-step instructions on how to configure Azure Data Factory Analytics with Azure Monitor.  
 
-It will require the [Azure Data Factory Management Solution Service Pack](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/Microsoft.AzureDataFactoryAnalytics?src=azserv&tab=Overview).
+**This is not what you are looking for.** This has you configuring Azure Monitor to point towards your Data Factory instance, rather than have Data Factory point towards Azure Monitor.  It requires the 
+ [Azure Data Factory Management Solution Service Pack](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/Microsoft.AzureDataFactoryAnalytics?src=azserv&tab=Overview).
 
 ![image info](./img/5-adf_mgmt_sol.png)
 
-This will install the service pack to your data factory instance, where you can specify how you will store/stream your logs.
+#### The problem with this approach
+This issue that with the approach is that Data Factory must be made in **your** subscription. For example, if a peer made the Data Facotry instance, and then you tried to connect Monitor to it, it would not work. Therefore, we need to **connect to  Monitor from *within* Data Factory.** Below I illustrate how to do that. 
 
-![image info](./img/6-adf_logging.png)
+### Monitor Data Factory metrics with Azure Monitor
+From the Azure Portal, click on your Data Factory instance, and on the left-hand side look  for *Diagnostic settings*. 
 
-Once you configure your logging preferences, the Azure Data Factory Analytics workspace will appear in your Azure dashboard.
+![diag-settings-portal](./img/8-portal_diag.png)
+
+You can add new diagnostic settings from here by clicking on the *+Add diagnostic setting* button. 
+
+![settings](./img/9-create_new_settings.png)
+
+From here you can:
+1. Send to Log Analytics
+2. Archive to a storage account
+3. Stream to en event hub 
+
+**NOTE:** All of these need to be in the same region (EX: *East US 2*) as the Data Factory.
+
+![storage acct](./img/10-storage_acct.png)
+
+
+### Archive to a storage account
 
 ---------------
 ### Resources
