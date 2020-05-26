@@ -10,12 +10,27 @@ But connecting ADF to Azure Monitor, you can:
 * Stream to an event hub
 * Send to Log Analytics
 
+---
 ### Azure Monitor
 ADF's monitoring solution is built on [Azure Monitor.](https://docs.microsoft.com/en-us/azure/azure-monitor/overview) Azure Monitor maximizes the availability and performance of your applications and services by delivering a comprehensive solution for collecting, analyzing, and acting on telemetry from your cloud and on-premises environments. 
 
 It helps you understand how your applications are performing and proactively identifies issues affecting them and the resources they depend on.
 
-### Configuring alerts within Data Factory
+The following diagram gives a high-level view of Azure Monitor. At the center of the diagram are the data stores for metrics and logs, which are the two fundamental types of data use by Azure Monitor. 
+
+![image info](./img/4-az_monitor.png)
+
+On the **left** are the **sources** of monitoring data that populate these data stores. On the **right** are the different **functions** that Azure Monitor performs with this collected data such as analysis, alerting, and streaming to external systems.
+
+All data collected by Azure Monitor fits into one of two fundamental types, **metrics** and **logs**.
+
+* **Metrics:** Numerical values that describe some aspect of a system at a particular point in time. They are lightweight and capable of supporting near real-time scenarios.
+
+ * **Logs:** Contain different kinds of data organized into records with different sets of properties for each type. Telemetry such as events and traces are stored as logs in addition to performance data so that it can all be combined for analysis.
+
+We can manage this from two different locations. The first is from **within** ADF itself, which is the more simple solution, although somewhat limited when compared to managaging this within the portal. Let's explore ADF first.
+
+### 1. Mangage alerts within Data Factory
 
 ![image info](./img/1-criteria.png)
 
@@ -30,8 +45,10 @@ Different mechanisms such email, SMS, voice, and push notifications are supporte
 
 ![image info](./img/3-alert_email.png)
 
-#### Manage rules/alerts from within the Azure Portal
-You can also manage and view these rules from within the Azure portal.
+----
+
+### 2. Manage rules/alerts from within the Azure Portal
+You can also manage and view these rules from within the Azure portal, which is more complex, but offers far more control, particularly with monitoring.
 
 ![see alerts](./img/11-see_alert_rules.png)
 
@@ -40,24 +57,12 @@ You can find this by click on the Monitoring -> Alerts pane:
 ![monitoring alerts](./img/12-monitoring-alerts.png)
 
 ### Keeping Azure Data Factory data
-Data Factory stores pipeline-run data for only 45 days. Use Monitor if you want to keep that data for a longer time. With Monitor, you can route diagnostic logs for analysis. You can also keep them in a storage account so that you have factory information for your chosen duration.
+Data Factory stores pipeline-run data for only 45 days. Use Monitor if you want to keep that data for a longer time. With **Azure Monitor**, you can route diagnostic logs for analysis. You can also keep them in a storage account so that you have factory information for your chosen duration.
 
 #### Diagnostic logs
-* Save your diagnostic logs to a storage account for auditing or manual inspection. You can use the diagnostic settings to specify the retention time in days.
-* Stream the logs to Azure Event Hubs. The logs become input to a partner service or to a custom analytics solution like Power BI.
-* Analyze the logs with Log Analytics.
+From here you can send metrics & logs to 3 destinations:
 
-### Azure Monitor (cont'd)
-The following diagram gives a high-level view of Azure Monitor. At the center of the diagram are the data stores for metrics and logs, which are the two fundamental types of data use by Azure Monitor. 
-
-On the left are the sources of monitoring data that populate these data stores. 
-
-On the right are the different functions that Azure Monitor performs with this collected data such as analysis, alerting, and streaming to external systems.
-![image info](./img/4-az_monitor.png)
-
-All data collected by Azure Monitor fits into one of two fundamental types, metrics and logs. Metrics are numerical values that describe some aspect of a system at a particular point in time. They are lightweight and capable of supporting near real-time scenarios.
-
- Logs contain different kinds of data organized into records with different sets of properties for each type. Telemetry such as events and traces are stored as logs in addition to performance data so that it can all be combined for analysis.
+![destinations](./img/14-destinations.png)
 
  #### Azure Data Factory Management Solution Service Pack
 [This video from Scott Hanselman](https://docs.microsoft.com/en-us/azure/data-factory/monitor-using-azure-monitor#monitor-data-factory-metrics-with-azure-monitor) has step-by-step instructions on how to configure Azure Data Factory Analytics with Azure Monitor.  
@@ -81,12 +86,7 @@ You can add new diagnostic settings from here by clicking on the *+Add diagnosti
 
 ![settings](./img/9-create_new_settings.png)
 
-From here you can send metrics & logs to 3 destinations:
-
-![destinations](./img/14-destinations.png)
-
-
-[More details here in the documentation.](https://docs.microsoft.com/en-us/azure/azure-monitor/platform/diagnostic-settings)
+More details around diagnostic settings can be found [in the documentation.](https://docs.microsoft.com/en-us/azure/azure-monitor/platform/diagnostic-settings)
 
 **NOTE:** All of these need to be in the same region (EX: *East US 2*) as the Data Factory.
 
