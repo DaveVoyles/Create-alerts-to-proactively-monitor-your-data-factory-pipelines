@@ -73,16 +73,20 @@ This issue that with the approach is that Data Factory must be made in **your** 
 ### Monitor Data Factory metrics with Azure Monitor
 From the Azure Portal, click on your Data Factory instance, and on the left-hand side look  for *Diagnostic settings*. 
 
+Diagnostic settings are used to configure streaming export of platform logs and metrics for a resource to the destination of your choice. You may create up to five different diagnostic settings to send different logs and metrics to independent destinations.
+
 ![diag-settings-portal](./img/8-portal_diag.png)
 
 You can add new diagnostic settings from here by clicking on the *+Add diagnostic setting* button. 
 
 ![settings](./img/9-create_new_settings.png)
 
-From here you can:
-1. Send to Log Analytics
-2. Archive to a storage account
-3. Stream to en event hub 
+From here you can send metrics & logs to 3 destinations:
+
+![destinations](./img/14-destinations.png)
+
+
+[More details here in the documentation.](https://docs.microsoft.com/en-us/azure/azure-monitor/platform/diagnostic-settings)
 
 **NOTE:** All of these need to be in the same region (EX: *East US 2*) as the Data Factory.
 
@@ -90,6 +94,21 @@ From here you can:
 
 
 ### Archive to a storage account
+
+### Pricing details
+#### Log Analytics
+For Azure Monitor Log Analytics, you pay for data ingestion and data retention.
+
+#### Data Ingestion
+There are two ways to pay for ingesting data into the Azure Monitor Log Analytics service: 
+1. Capacity Reservations 
+2. Pay-As-You-Go.
+
+[More information can be found on the costs page](https://azure.microsoft.com/en-us/pricing/details/monitor/)
+
+Although you can see below, that it cost me ~$0.10 per month for this alert.
+
+![costs](./img/13-costs.png)
 
 ---------------
 ### Resources
@@ -101,6 +120,9 @@ From here you can:
 
 * [Azure Data Factory Management Solution Service Pack](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/Microsoft.AzureDataFactoryAnalytics?src=azserv&tab=Overview)
 
+* [Azure Monitor Pricing](https://azure.microsoft.com/en-us/pricing/details/monitor/)
+
+* [Create diagnostic setting to collect resource logs and metrics in Azure](https://docs.microsoft.com/en-us/azure/azure-monitor/platform/diagnostic-settings)
 
 -----------------
 ###### Prepared by [Dave Voyles](dvoyles@microsoft.com), Microsoft Corp | May 2020
