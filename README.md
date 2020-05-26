@@ -122,6 +122,24 @@ From there you can link it to your Data Factory diagnostics in the Azure portal:
 
 ![connect log analytics](./img/18-connect_to_log_analytics.png)
 
+Clicking on **workspace summary** will bring you to a dashboard with the various filters you have enabled:
+
+![summary](./img/21-summary.png)
+
+Clicking through will provided additional details:
+
+![summar](./img/22-additional_details.png)
+
+Within the workspace, you can run detailed queries on the logs:
+
+![detailed queries](./img/20-log_analytics_queries.png)
+
+When sending logs to a workspace via Diagnostic Settings, there are two ways the data can show up: Azure Diagnostics and Resource Specific.
+
+**Azure Diagnostics** is the legacy method used by the majority of Azure services. In this mode, all the data will end up in AzureDiagnostics table, with schema being a superset of all different datatypes being emitted to the workspace. 
+
+**Resource Specific** will send logs to separate tables created for each category. This allows for optimized experiences with improved ingestion latency and query performance, better discoverability and documentation, and table-specific controls.
+
 ---
 ### Pricing details
 #### Log Analytics
