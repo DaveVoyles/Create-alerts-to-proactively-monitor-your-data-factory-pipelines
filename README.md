@@ -93,7 +93,7 @@ More details around diagnostic settings can be found [in the documentation.](htt
 ![storage acct](./img/10-storage_acct.png)
 
 
-### Archive to a storage account
+### 1. Archive to a storage account
 You'll need to create a storage account **in the same resource group and region** as your data factory in order to archive logs to it.
 
 After a run is executed from within Data Factory, you'll see the results written to the new containers within your linked storage account. These containers are created automatically by Azure, upon linking it to the logging service. 
@@ -106,14 +106,14 @@ The end result will be a ```.json``` file with information about the run.
 
 You can find an example of this file in the ```/monitoring-output``` folder included with this README.
 
-### Sending to an event hub
+### 2. Sending to an event hub
 You'll need to create an event hub in your subscription first, and then from within the Data Factory's **Diagnostic Settings** you can link to your event hub namespace.
 
 ![save to event hubs](./img/16-save_to_event_hub.png)
 
 ![event hubs](./img/15-event_hubs.png)
 
-### Log Analytics workspace
+### 3. Logging to an Analytics workspace
 You'll ned to create a Log Analytics workspace from within the Azure Portal before you can link it to this Data Factory. 
 
 ![log analytics workspace](./img/17-log_analytics_workspace.png)
@@ -122,6 +122,7 @@ From there you can link it to your Data Factory diagnostics in the Azure portal:
 
 ![connect log analytics](./img/18-connect_to_log_analytics.png)
 
+---
 ### Pricing details
 #### Log Analytics
 For Azure Monitor Log Analytics, you pay for data ingestion and data retention.
