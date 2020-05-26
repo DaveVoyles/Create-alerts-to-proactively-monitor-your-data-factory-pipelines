@@ -5,7 +5,7 @@ Organizations can improve operational productivity by creating alerts on data in
 
 [This document from Microsoft](https://azure.microsoft.com/en-us/blog/create-alerts-to-proactively-monitor-your-data-factory-pipelines/) offers detailed instructions on how to enable monitoring within ADF.
 
-But connecting ADF to Azure Monitor, you can:
+By connecting ADF to Azure Monitor, you can:
 * Archive logs to a storage account
 * Stream to an event hub
 * Send to Log Analytics
